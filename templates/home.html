@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{# #}
+{% block title %}用户主页{%endblock%}
+{% block link %}<link rel="stylesheet" type="text/css" href="/static/css/home.css" />{%endblock%}
+{% block script %}<script type="text/javascript" src="/static/js/home.js"></script>{%endblock%}
+{%block top01%}
+<div>
+		<div class='form-group'>
+			<div align='center'>
+				<form  action='queryQQ' method='post'>	
+					QQ号<input type="text" name="thenum"></input>
+					<button type="submit">提交</button>
+				</form>
+				<form  action='queryQun' method='post'>	
+					QQ群<input type="text" name="thenum"></input>
+					<button type="submit">提交</button>
+				</form>
+			</div>
+		</div>
+	<div style="overflow-x: auto; overflow-y: auto; height: 600px;">	
+	<div id='dataarea'>
+		{%if quninfo%}
+			<table id='queryresult' align='center' class='table table-striped'>
+				<tr><td>QQ号</td><td>QQ昵称</td><td>年龄</td><td>QQ群号</td><td>QQ群名字</td><td>查看</td>
+						</tr>
+				{%for row in quninfo%}
+					<tr onclick='searchqq(this)' onmouseover='over(this)' onmouseout='out(this)'>{%for cell in row%}
+							<td>{{cell}}</td>
+						{%endfor%} <td><button>查看</button></tr>
+					{%endfor%}</table>
+		{%elif qqinfo%}
+			<table id='queryresult' align='center' class='table table-striped'>
+				<tr><td>QQ号</td><td>QQ昵称</td><td>年龄</td><td>QQ群号</td><td>QQ群名字</td><td>查看</td>
+						</tr>
+				{%for row in qqinfo%}
+					<tr onclick='searchqun(this)' onmouseover='over(this)' onmouseout='out(this)'>{%for cell in row%}
+							<td>{{cell}}</td>
+						{%endfor%} <td><button>查看</button></td></tr>
+					{%endfor%}</table>
+		{%else%}
+		没有查到信息
+		{%endif%}
+	</div>
+	</div>
+
+{%endblock%}

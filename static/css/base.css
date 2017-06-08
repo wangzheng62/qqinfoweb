@@ -1,0 +1,30 @@
+#top{
+border-style:dotted dotted dotted dotted;
+border-width:1px 1px 1px 1px;
+width:100%;
+float:left;}
+#top01{
+border-style:dotted dotted dotted dotted;
+border-width:1px 1px 1px 1px;
+width:100%;
+float:left;}
+#top02{
+border-style:dotted dotted dotted dotted;
+border-width:1px 1px 1px 1px;
+width:100%;
+float:left;}
+#left{border-style:dotted dotted dotted dotted;
+border-width:1px 1px 1px 1px;
+width:49%;
+float:left;
+}
+#right{border-style:dotted dotted dotted dotted;
+border-width:1px 1px 1px 1px;
+width:50%;
+float:right;
+}
+#bottom{border-style:dotted dotted dotted dotted;
+border-width:1px 1px 1px 1px;
+width:100%;
+float:left;}
+

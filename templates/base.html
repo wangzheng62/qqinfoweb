@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>{% block title %}{% endblock %}</title>
+	<link rel="stylesheet" type="text/css" href="/static/css/base.css" />
+	<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css" />
+	
+	{% block link%}{% endblock %}
+	{% block script%}{% endblock %}
+</head>
+<script type="text/javascript">       
+ function logout(){window.location.href='/'}  
+</script>
+<body>
+    <div id="top">用户名：{{loginname}} 到期时间：{{endtime}}
+	客服QQ：{{contactofcreator}}
+	<button onclick="window.open('/userpage','_blank')">用户设置</button>
+	<button onclick="logout()">登出</button>{% block top %}{% endblock %}
+	</div>
+	<div id="top01">{% block top01 %}{% endblock %}</div>
+	<div id="top02">{% block top02 %}{% endblock %}</div>
+	<div id="left">{% block left %}{% endblock %}</div>
+	<div id="right">{% block right %}{% endblock %}</div>
+	<div id="bottom">{% block bottom %}{% endblock %}</div>
+    
+</body>
+</html>

@@ -1,0 +1,67 @@
+﻿{% extends 'base.html' %}
+{# #}
+{% block title %}管理主页{%endblock%}
+{% block script %}<script type="text/javascript" src="/static/js/admin.js"></script>{%endblock%}
+{% block link %}<link rel="stylesheet" type="text/css" href="/static/css/admin.css" />{%endblock%}
+{# #}
+
+{% block top01 %}
+	<div id="left01">
+	<div style="width:80%">
+		<button type="button" class="btn btn-primary" data-toggle="collapse" 
+		data-target="#demo">
+			添加用户
+		</button>
+		<div style="width:70%">
+		<div id="demo" class="collapse in">
+			<form action="adduser" method="post" class='form-horizontal'>
+				设置用户名：<input type="text" class="form-control" placeholder="不超过20个字符" name="loginname"></input><p>
+				设 置 密码：<input type="text"class="form-control" name="passwd"></input><p>
+				设置到期时间：<input type="text" class="form-control" name="endtime"placeholder="格式：XXXX-XX-XX（2020-01-01）"></input>
+				设置客户的联系方式：<input type="text" class="form-control" name="contact"></input><p>
+				<button type="submit" class="btn btn-default">提交</button>  
+			</form>
+		</div>
+		</div>
+	</div>
+	</div>
+	<div id="left02">
+		<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo01">修改用户</button>
+		<div style="width:70%">
+		<div id="demo01" class="collapse in">
+			<form action="updateuser" method="post"  id="update" class='form-horizontal'>
+				用户名：<input type="text" class="form-control" name="loginname"  placeholder="不能修改用户名" ></input>
+				设置密码：<input type="text"class="form-control" name="passwd"></input><p>
+				设置到期时间：<input type="text" class="form-control" name="endtime" placeholder="格式：XXXX-XX-XX（2020-01-01）"></input>
+				设置客户的联系方式：<input type="text" class="form-control" name="contact"></input><p>
+				<button type="submit" class="btn btn-default">提交</button>
+			</form>  
+		</div>
+		</div>
+	</div>
+	<div id="left03">
+		<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo02">删除用户</button>
+		<div style="width:70%">
+		<div id="demo02" class="collapse in">
+			<form action="deluser" method="post" class='form-horizontal'>
+				要删除的用户名：<input type="text"  class="form-control" name="delloginname"></input><p>
+			<button type="submit" class="btn btn-default">提交</button>
+			</form> 
+		</div>
+		</div>
+		执行情况：<p><textarea>{{info}}</textarea>
+	</div>
+{%endblock%}
+{% block top02 %}
+<div style="overflow-x: auto; overflow-y: auto; height: 400px;">
+<h4 align='center'>用户列表</h4>
+		<div id='dataarea'>
+			<table id='queryresult' align='center' class='table table-striped'>
+				{%for row in userlist%}
+					<tr onclick='autotype(this)' onmouseover='over(this)' onmouseout='out(this)'>{%for cell in row%}
+							<td>{{cell}}</td>
+						{%endfor%}</tr>
+					{%endfor%}</table>
+		</div>
+</div>
+{%endblock%}

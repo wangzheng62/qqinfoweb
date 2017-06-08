@@ -1,0 +1,43 @@
+
+.over{background-color: gray;}
+.out{}
+.red{color:red;}
+
+.topslider{
+	text-align:center;
+	border-style: solid solid solid solid;
+	border-width: 0px 0px 0px 0px;
+	border-color: #586974 #586974 #586974 #586974;
+	min-height:60px;
+	}
+#dataarea{width:60%;
+margin:auto;}
+#d01{
+
+width:40%;
+float:left;}
+#d02{
+width:40%;
+float:right;}
+#dd{
+
+width:100%;
+float:left;}
+#top{
+
+	min-height:50px;
+	width:100%;
+	float:left;
+	text-align:center;
+	line-height:400%;
+	}
+#top01{
+	min-height:150px;
+	width:100%;
+	float:left;
+	text-align:center;
+	}
+#top02{
+	width:30%;
+	margin:auto;
+	}
