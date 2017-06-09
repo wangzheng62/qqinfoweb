@@ -1,15 +1,16 @@
-class User(object):
+class UserMetaclass(type):
+	def __new__(cls,name,*args):
+		
+	
+class User():
 	__type=''
-	def __init__(self,username,passwd,**kw):
-		self.__username=username
-		self.passwd=passwd
+	def __init__(self,username,**kw):
+		self.username=username
 		for key in kw:
-			exec('self.%s=kw[key]'%key)
-	@property
-	def username(self):
-		return self.__username
+			if key=='loginname':
+				continue
+			else:
+				exec('self.%s=kw[key]'%key)
 if __name__=='__main__':
-	u=User('test','123456')
-	print(u.username,u.passwd)
-	u.passwd='aaa'
-	print(u.username,u.passwd)
+	u=User('test')
+	print(u.username)
