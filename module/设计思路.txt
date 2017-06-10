@@ -1,0 +1,6 @@
+用户表为
+class User():
+	table=tablename
+	__slot__=[列名]
+	def __init__(self,**kw):
+		for
