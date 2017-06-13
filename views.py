@@ -3,12 +3,13 @@
 'router register'
 from flask import Flask,render_template,session,request
 from module import useraction,sql
+from module.__checkaction import check
+from vars import Userlist,Onlinelist,login,auth,date,err
 import os,time
 #变量初始化
 app=Flask(__name__)
 app.secret_key=os.urandom(24)
 #页面注册
-
 #导航页面
 @app.route('/')
 def index():
@@ -16,35 +17,21 @@ def index():
 #登录
 @app.route('/indexlogin',methods=['get','post'])
 def indexlogin():
-	#print(session)
 	namelist=['loginname','passwd']
 	d=getpagedata(*namelist)
-	if d['loginname']==session.get('loginname'):
-		if session['auth']>2:
-			return render_template('home.html',**session)
-		else:
-			return render_template('admin.html',userlist=useraction.getuserlist(session['loginname'],session['creator']),**session)
-	#执行登录，返回登录信息[error,loginname,endtime,auth,creator,logintime]
+	user=Userlist(**d)
+	if user.isexist():
+		session['userinfo']=d
+		return render_template('home.html')
 	else:
-		loginfo=useraction.dologin(d['loginname'],d['passwd'])
-		if loginfo[0]=='':
-			l=['error','loginname','endtime','auth','creator','logintime']
-			for (key,values) in zip(l,loginfo):
-				session[key]=values
-			#print('验证成功')
-			#print(loginfo)
-			if session['auth']>2:
-				return render_template('home.html',**session)
-			else:
-				return render_template('admin.html',userlist=useraction.getuserlist(session['loginname'],session['creator']),**session)
-		else:
-			return loginfo[0]
+		return 'error'
 #登出
 @app.route('/logout')
 def logout():
-	useraction.delonline(session['loginname'])
-	return render_template('index.html')
-
+	@check(Userlist(**session['userinfo']),err,(login,auth))
+	def do():
+		return session['userinfo']['loginname']
+	return do()
 #管理主页
 #管理员功能
 @app.route('/adduser',methods=['get','post'])
